@@ -1,0 +1,4 @@
+Sampling,Best_CV_Macro_F1,Best_Parameters
+Original,0.9450193096357704,"{'classifier__subsample': 0.8, 'classifier__n_estimators': 200, 'classifier__min_child_weight': 3, 'classifier__max_depth': 5, 'classifier__learning_rate': 0.2, 'classifier__gamma': 0, 'classifier__colsample_bytree': 0.7}"
+SMOTE,0.938409633263697,"{'classifier__subsample': 0.8, 'classifier__n_estimators': 300, 'classifier__min_child_weight': 7, 'classifier__max_depth': 4, 'classifier__learning_rate': 0.2, 'classifier__gamma': 0.2, 'classifier__colsample_bytree': 0.7}"
+ROS,0.9541511262212614,"{'classifier__subsample': 0.7, 'classifier__n_estimators': 500, 'classifier__min_child_weight': 7, 'classifier__max_depth': 6, 'classifier__learning_rate': 0.2, 'classifier__gamma': 0.2, 'classifier__colsample_bytree': 0.7}"

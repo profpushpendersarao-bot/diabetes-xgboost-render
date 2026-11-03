@@ -1,0 +1,28 @@
+{
+    "Best_Model": "SMOTE",
+    "Model_Algorithm": "XGBoost",
+    "Accuracy": 0.9879032258064516,
+    "Macro_F1": 0.980629539951574,
+    "ROC_AUC": 0.9995936805328635,
+    "PR_AUC": 0.9984278869491211,
+    "MCC": 0.9584154889932359,
+    "Features": [
+        "Gender",
+        "AGE",
+        "Urea",
+        "Cr",
+        "HbA1c",
+        "Chol",
+        "TG",
+        "HDL",
+        "LDL",
+        "VLDL",
+        "BMI"
+    ],
+    "Target": "CLASS",
+    "Classes": {
+        "0": "Non-Diabetic",
+        "1": "Pre-Diabetic",
+        "2": "Diabetic"
+    }
+}

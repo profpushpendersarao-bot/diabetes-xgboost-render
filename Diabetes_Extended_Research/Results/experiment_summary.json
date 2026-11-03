@@ -1,0 +1,26 @@
+{
+    "dataset": "Dataset of Diabetes .csv",
+    "random_seed": 42,
+    "original_samples": 1000,
+    "unique_samples": 826,
+    "features": [
+        "Gender",
+        "AGE",
+        "Urea",
+        "Cr",
+        "HbA1c",
+        "Chol",
+        "TG",
+        "HDL",
+        "LDL",
+        "VLDL",
+        "BMI"
+    ],
+    "target": "CLASS",
+    "train_samples": 578,
+    "test_samples": 248,
+    "best_sampling_method": "SMOTE",
+    "best_test_accuracy": 0.9879032258064516,
+    "best_test_macro_f1": 0.980629539951574,
+    "friedman_p_value": 0.003692340551470944
+}

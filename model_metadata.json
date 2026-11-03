@@ -1,0 +1,25 @@
+{
+  "feature_order": [
+    "Gender",
+    "AGE",
+    "Urea",
+    "Cr",
+    "HbA1c",
+    "Chol",
+    "TG",
+    "HDL",
+    "LDL",
+    "VLDL",
+    "BMI"
+  ],
+  "gender_encoding": {
+    "F": 0,
+    "M": 1
+  },
+  "class_mapping": {
+    "0": "Non-Diabetic",
+    "1": "Pre-Diabetic",
+    "2": "Diabetic"
+  },
+  "test_accuracy": null
+}

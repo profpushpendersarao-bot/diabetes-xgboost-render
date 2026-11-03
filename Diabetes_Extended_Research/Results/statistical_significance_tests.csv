@@ -1,0 +1,12 @@
+Test,Statistic,P_Value,Comparison
+Friedman Test,15.546391752577318,0.003692340551470944,
+Wilcoxon,5.0,1.0,Original vs ROS
+Wilcoxon,5.0,0.625,Original vs SMOTE
+Wilcoxon,0.0,0.0625,Original vs RUS
+Wilcoxon,0.0,0.0625,Original vs Cluster_Centroids
+Wilcoxon,3.0,1.0,ROS vs SMOTE
+Wilcoxon,0.0,0.0625,ROS vs RUS
+Wilcoxon,0.0,0.0625,ROS vs Cluster_Centroids
+Wilcoxon,0.0,0.0625,SMOTE vs RUS
+Wilcoxon,0.0,0.0625,SMOTE vs Cluster_Centroids
+Wilcoxon,3.0,0.3125,RUS vs Cluster_Centroids

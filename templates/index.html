@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Diabetes Risk Classification</title>
+    <style>
+        * { box-sizing: border-box; }
+        body {
+            margin: 0; padding: 24px 12px; font-family: Arial, sans-serif;
+            background: #f3f6fb; color: #172033;
+        }
+        .container {
+            max-width: 1000px; margin: 0 auto; padding: 26px;
+            background: #ffffff; border: 1px solid #dce2ea;
+            border-radius: 14px; box-shadow: 0 5px 22px rgba(0,0,0,.06);
+        }
+        h1 { margin: 0 0 8px; font-size: 28px; }
+        .intro { color: #5b6475; line-height: 1.5; margin-bottom: 24px; }
+        .grid {
+            display: grid; grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 17px;
+        }
+        .field label {
+            display: block; margin-bottom: 7px; font-weight: 700; font-size: 14px;
+        }
+        .field input, .field select {
+            display: block; width: 100%; height: 44px; padding: 9px 11px;
+            border: 1px solid #cbd3df; border-radius: 7px;
+            background: #fff; color: #172033; font-size: 15px;
+        }
+        .field input:focus, .field select:focus {
+            outline: 2px solid #b9ccff; border-color: #2457c5;
+        }
+        button {
+            margin-top: 23px; padding: 13px 24px; border: 0;
+            border-radius: 7px; background: #2457c5; color: white;
+            font-size: 16px; font-weight: bold; cursor: pointer;
+        }
+        button:hover { background: #1946a8; }
+        .error, .result, .notice {
+            margin-top: 20px; padding: 16px; border-radius: 8px; line-height: 1.5;
+        }
+        .error { background: #fff0f0; border: 1px solid #e5baba; color: #8b1d1d; }
+        .result { background: #effaf3; border: 1px solid #b8e2c5; }
+        .notice { background: #f0f5ff; color: #263b65; }
+        .probability {
+            display: flex; justify-content: space-between; gap: 16px;
+            padding: 8px 0; border-bottom: 1px solid #d7eadc;
+        }
+        .probability:last-child { border-bottom: 0; }
+        .footer { margin-top: 17px; color: #5b6475; font-size: 12px; line-height: 1.5; }
+        @media (max-width: 720px) {
+            .grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+            .container { padding: 19px; }
+        }
+        @media (max-width: 480px) {
+            .grid { grid-template-columns: 1fr; }
+            h1 { font-size: 23px; }
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h1>Diabetes Risk Classification</h1>
+    <p class="intro">
+        Enter all 11 input values required by the trained model. All fields are mandatory.
+    </p>
+
+    <form method="POST" action="/predict">
+        <div class="grid">
+            <div class="field">
+                <label for="Gender">1. Gender</label>
+                <select id="Gender" name="Gender" required>
+                    <option value="">Select gender</option>
+                    <option value="F" {% if values.get('Gender', '') == 'F' %}selected{% endif %}>Female</option>
+                    <option value="M" {% if values.get('Gender', '') == 'M' %}selected{% endif %}>Male</option>
+                </select>
+            </div>
+
+            <div class="field">
+                <label for="AGE">2. Age (years)</label>
+                <input id="AGE" name="AGE" type="number" min="0" step="any"
+                       value="{{ values.get('AGE', '') }}" required>
+            </div>
+
+            <div class="field">
+                <label for="Urea">3. Urea</label>
+                <input id="Urea" name="Urea" type="number" min="0" step="any"
+                       value="{{ values.get('Urea', '') }}" required>
+            </div>
+
+            <div class="field">
+                <label for="Cr">4. Creatinine (Cr)</label>
+                <input id="Cr" name="Cr" type="number" min="0" step="any"
+                       value="{{ values.get('Cr', '') }}" required>
+            </div>
+
+            <div class="field">
+                <label for="HbA1c">5. HbA1c</label>
+                <input id="HbA1c" name="HbA1c" type="number" min="0" step="any"
+                       value="{{ values.get('HbA1c', '') }}" required>
+            </div>
+
+            <div class="field">
+                <label for="Chol">6. Cholesterol (Chol)</label>
+                <input id="Chol" name="Chol" type="number" min="0" step="any"
+                       value="{{ values.get('Chol', '') }}" required>
+            </div>
+
+            <div class="field">
+                <label for="TG">7. Triglycerides (TG)</label>
+                <input id="TG" name="TG" type="number" min="0" step="any"
+                       value="{{ values.get('TG', '') }}" required>
+            </div>
+
+            <div class="field">
+                <label for="HDL">8. HDL</label>
+                <input id="HDL" name="HDL" type="number" min="0" step="any"
+                       value="{{ values.get('HDL', '') }}" required>
+            </div>
+
+            <div class="field">
+                <label for="LDL">9. LDL</label>
+                <input id="LDL" name="LDL" type="number" min="0" step="any"
+                       value="{{ values.get('LDL', '') }}" required>
+            </div>
+
+            <div class="field">
+                <label for="VLDL">10. VLDL</label>
+                <input id="VLDL" name="VLDL" type="number" min="0" step="any"
+                       value="{{ values.get('VLDL', '') }}" required>
+            </div>
+
+            <div class="field">
+                <label for="BMI">11. BMI</label>
+                <input id="BMI" name="BMI" type="number" min="0" step="any"
+                       value="{{ values.get('BMI', '') }}" required>
+            </div>
+        </div>
+
+        <button type="submit">Predict Class</button>
+    </form>
+
+    {% if error %}
+    <div class="error" role="alert">
+        <strong>Prediction error:</strong> {{ error }}
+    </div>
+    {% endif %}
+
+    {% if result %}
+    <section class="result" aria-live="polite">
+        <h2>Predicted class: {{ result.class_name }}</h2>
+        <p>Model class code: {{ result.class_code }}</p>
+        <h3>Model probability estimates</h3>
+        {% for item in result.probabilities %}
+        <div class="probability">
+            <span>{{ item.name }}</span>
+            <strong>{{ "%.2f"|format(item.percentage) }}%</strong>
+        </div>
+        {% endfor %}
+    </section>
+    {% endif %}
+
+    <div class="notice">
+        <strong>Research prototype only:</strong>
+        This model output is not a medical diagnosis and must not be used to make
+        treatment decisions. Consult a qualified healthcare professional.
+    </div>
+</div>
+<p class="footer" style="max-width:1000px;margin-left:auto;margin-right:auto;">
+    The application processes the submitted values for prediction. It does not
+    intentionally save the submitted form data.
+</p>
+</body>
+</html>
